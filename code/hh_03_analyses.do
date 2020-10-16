@@ -14,21 +14,28 @@ global archive "${data}archive\"
 local ages "age_18_24 age_25_34 age_35_44 age_45_54 age_55_64 age_65_plus age_yeah_right"
 local residential_address_variables "res_street_address res_city_desc"
 
+
 local streets "corncrib bay_dr_cary blueberry_woods"
 local streets "bay_dr_cary s_corncrib southern_cross"
+local streets "barday hampton_valley"
 
 local corncrib_streets "woodshed vineyard tropical bellemead westhaven su_john hillside electra"
 local southern_cross_streets "silver_lake yates_garden purple_martin goldfinch school_creek bryarton_woods antebellum orabelle nautia olivias goldeneye"
 local st_helena_streets "st_julian senoma beringer vintage_grove inglenook samara"
 local haversham_streets "houndschase delchester charing_cross wigan woodham trillingham"
+local barday_streets "yates_garden goldfinch school_creek purple_martin silver_lake southern_cross"
+local hampton_valley_streets "willowbrook oregon woodland oakridge holly brookcliff huntwood overview farmstead parkview"
 
-local neighborhoods "n_s_corncrib n_southern_cross n_imperial n_st_helena n_haversham"
+local neighborhoods "n_s_corncrib n_bay_dr_cary n_southern_cross n_imperial n_st_helena n_haversham"
+local neighborhoods "n_barday n_hampton_valley"
+
 //Maybe should add a Bay drve neighborhood variable: n_bay_dr_cary 
 local date_time "201014_0600"
+local date_time "201015_2140"
 
 local data_date "201004_1700"
 
-*use "${clean_data}wake_voter_data_househunt_analysis.dta", clear
+use "${clean_data}wake_voter_data_househunt_analysis.dta", clear
 
 //Crosstabs & Analysis
 tab party_cd if bay_dr_cary

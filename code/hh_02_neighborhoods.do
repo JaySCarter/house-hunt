@@ -16,15 +16,21 @@ local residential_address_variables "res_street_address res_city_desc"
 
 local streets "corncrib bay_dr_cary blueberry_woods"
 local streets "bay_dr_cary s_corncrib southern_cross"
+local streets "barday hampton_valley"
 
 local corncrib_streets "woodshed vineyard tropical bellemead westhaven su_john hillside electra"
 local southern_cross_streets "silver_lake yates_garden purple_martin goldfinch school_creek bryarton_woods antebellum orabelle nautia olivias goldeneye"
 local st_helena_streets "st_julian senoma beringer vintage_grove inglenook samara"
 local haversham_streets "houndschase delchester charing_cross wigan woodham trillingham"
+local barday_streets "yates_garden goldfinch school_creek purple_martin silver_lake southern_cross"
+local hampton_valley_streets "willowbrook oregon woodland oakridge holly brookcliff huntwood overview farmstead parkview"
 
 local neighborhoods "n_s_corncrib n_bay_dr_cary n_southern_cross n_imperial n_st_helena n_haversham"
+local neighborhoods "n_barday n_hampton_valley"
 
 local date_time "201014_0600"
+local date_time "201015_2130"
+
 
 local data_date "201004_1700"
 
@@ -51,6 +57,11 @@ gen st_helena_apex = regexm(res_street, "HELENA") & regexm(res_street_address, "
 //103 Haversham
 gen haversham = regexm(res_street, "HAVERSHAM")
 
+//2416 Barday Downs, Cary
+gen barday = regexm(res_street, "BARDAY")
+
+//1314 Hampton Valley
+gen hampton_valley = regexm(res_street, "HAMPTON VALLEY")
 //Nearby Roads/Addresses
 
 //Imperial House
@@ -124,6 +135,29 @@ gen trillingham = regexm(res_street, "TRILLINGHAM")
 gen n_haversham = haversham
 foreach st of local haversham_streets {
     replace n_haversham = 1 if `st'
+}
+
+
+//2416 Barday Downs
+gen n_barday = barday
+foreach st of local barday_streets	{
+    replace n_barday = 1 if `st'
+}
+
+//Hampton Valley
+gen willowbrook = regexm(res_street_address, "WILLOWBROOK")
+gen oregon = regexm(res_street_address, "OREGON C")
+gen woodland =  regexm(res_street_address, "WOODLAND CT")
+gen holly = regexm(res_street_address, "HOLLY CIR") & cary
+gen oakridge =  regexm(res_street_address, "OAKRIDGE RD")
+gen brookcliff =  regexm(res_street_address, "BROOKCLIFF")
+gen huntwood =  regexm(res_street_address, "HUNTWOOD")
+gen farmstead =  regexm(res_street_address, "FARMSTEAD ")
+gen parkview =  regexm(res_street_address, "PARKVIEW CIR") & cary
+gen overview = regexm(res_street_address, "OVERVIEW") & cary
+gen n_hampton_valley = hampton_valley
+foreach st of local hampton_valley_streets	{
+    replace n_hampton_valley = 1 if `st'
 }
 
 save "${clean_data}wake_voter_data_househunt_analysis.dta", replace
