@@ -1,2 +1,4 @@
 *.dta
 ncvoter92.txt
+code/hh_02_neighborhoods_all.do
+code/hh_00a_macros.do

@@ -1,18 +1,23 @@
+/*
+
+"""
+House Hunting Voter Data Cleaning
+
+This does a small amount of cleaning to the voter file
+
+
+"""
+*/
+
 //Preamble
 clear
 version 16
 set more off
 
 //Macros
-global house_folder "C:\Users\JaysC\Dropbox\_My Computer\House\"
-global repo "${house_folder}house-hunt\"
-global data "${repo}data\"
-global raw_data "${data}raw_data\"
-global clean_data "${data}clean_data\"
-global archive "${data}archive\"
+*IN hh_00a_macros.do
 
-local streets "corncrib bay_dr_cary blueberry_woods"
-local streets "bay_dr_cary s_corncrib southern_cross"
+
 local ages "age_18_24 age_25_34 age_35_44 age_45_54 age_55_64 age_65_plus age_yeah_right"
 local residential_address_variables "res_street_address res_city_desc"
 
