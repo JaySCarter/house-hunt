@@ -46,6 +46,7 @@ use "${clean_data}wake_voter_data_househunt_base.dta", clear
 gen bay_dr_cary = regexm(res_street_address, "BAY ") & regexm(res_street_address, "DR") & cary
 replace bay_dr_cary = 0 if regexm(res_street_address, "PAMLICO") == 1
 
+/*
 //108 S. Corncrib Court, Cary
 gen s_corncrib = regexm(res_street_address, "S") & regexm(res_street_address, "CORNCRIB")
 
@@ -71,15 +72,23 @@ gen hampton_valley = regexm(res_street, "HAMPTON VALLEY")
 gen cane_creek = regexm(res_street, "CANE CREE")
 
 //109 Old Bridge Ln
+*/
 
 //229 Butterbiggins Ln
 gen butterbiggins = regexm(res_street,  "BUTTERBIGGINS")
 
 
+//2209 Woodnell
+gen woodnell = regexm(res_street, "WOODNELL")
 
+//101 Park James Way
+gen park_james = regexm(res_street, "PARK JAMES WAY")
+
+//1492 S. Wade Ave
+gen s_wade = regexm(res_street, "S WADE AVE")
 
 //Nearby Roads/Addresses
-
+/*
 //Imperial House
 gen wellington_dr = regexm(res_street_address, "WELLINGTON") == 1
 replace wellington_dr = 0 if regexm(res_city_desc, "CARY") == 0
@@ -188,7 +197,7 @@ foreach st of local n_cane_creek_streets {
 	replace n_cane_creek = 1 if `st'
 }
 
-
+*/
 //Butterbiggins
 gen grenoch = regexm(res_street_address, "GRENOCH")
 gen bally_shannon = regexm(res_street_address, "BALLY SHANNON")
@@ -200,12 +209,49 @@ foreach st of local butterbiggins_streets	{
 	replace n_butterbiggins = 1 if `st'
 }
 
+//Woodnell
+gen parkway = regexm(res_street_address, "PARKWAY DR")
+gen eastover = regexm(res_street_address, "EASTOVER DR")
+gen cedric = regexm(res_street_address, "CEDRIC DR")
+gen meadowland = regexm(res_street_address, "MEADOWLAND DR")
+gen april = regexm(res_street_address, "APRIL DR")
+gen brookwood = regexm(res_street_address, "BROOKWOOD DR")
+gen jennifer = regexm(res_street_address, "JENNIFER DR")
+
+local woodnell_streets "parkway eastover cedric meadowland april brookwood jennifer"
+
+gen n_woodnell = woodnell
+foreach st of local woodnell_streets	{
+	replace n_woodnell = 1 if `st'
+}
 
 //Park James Way
+gen kirkfield = regexm(res_street_address, "KIRKFIELD DR")
+gen victoria = regexm(res_street_address, "VICTORIA STATION CT")
+gen hunters = regexm(res_street_address, "HUNTERS XING")
+gen w_laurenbrook = regexm(res_street_address, "W LAURENBROOK CT")
+gen e_laurenbrook = regexm(res_street_address, "E LAURENBROOK CT")
+gen durington = regexm(res_street_address, "DURINGTON PL")
+gen woodruff = regexm(res_street_address, "WOODRUFF CT")
+gen merlot = regexm(res_street_address, "MERLOT CT")
+gen pink_acres = regexm(res_street_address, "PINK ACRES ST")
 
+local park_james_streets "kirkfield victoria hunters w_laurenbrook e_laurenbrook durington woodruff merlot pink_acres"
+
+gen n_park_james = park_james
+
+foreach st of local park_james_streets	{
+	replace n_park_james = 1 if `st'
+}
 //Wade Ave - Garner
 
+local s_wade_streets ""
+gen n_s_wade = s_wade
 
+
+foreach st of local s_wade_streets {
+	replace n_s_wade = 1 if `st'
+}
 save "${clean_data}wake_voter_data_househunt_analysis.dta", replace
 save "${archive}wake_voter_data_househunt_analysis_`date_time'.dta", replace
 
