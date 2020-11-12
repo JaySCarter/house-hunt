@@ -79,13 +79,17 @@ gen butterbiggins = regexm(res_street,  "BUTTERBIGGINS")
 
 
 //2209 Woodnell
-gen woodnell = regexm(res_street, "WOODNELL")
+*gen woodnell = regexm(res_street, "WOODNELL")
 
 //101 Park James Way
-gen park_james = regexm(res_street, "PARK JAMES WAY")
+*gen park_james = regexm(res_street, "PARK JAMES WAY")
 
 //1492 S. Wade Ave
-gen s_wade = regexm(res_street, "S WADE AVE")
+*gen s_wade = regexm(res_street, "S WADE AVE")
+
+//3516 Eastern Branch Rd
+gen eastern_branch = regexm(res_street, "EASTERN BRANCH RD")
+
 
 //Nearby Roads/Addresses
 /*
@@ -197,18 +201,6 @@ foreach st of local n_cane_creek_streets {
 	replace n_cane_creek = 1 if `st'
 }
 
-*/
-//Butterbiggins
-gen grenoch = regexm(res_street_address, "GRENOCH")
-gen bally_shannon = regexm(res_street_address, "BALLY SHANNON")
-gen havelock_ct = regexm(res_street_address, "HAVELOCK CT")
-gen ness = regexm(res_street_address, "NESS DR") & apex
-
-gen n_butterbiggins = butterbiggins
-foreach st of local butterbiggins_streets	{
-	replace n_butterbiggins = 1 if `st'
-}
-
 //Woodnell
 gen parkway = regexm(res_street_address, "PARKWAY DR")
 gen eastover = regexm(res_street_address, "EASTOVER DR")
@@ -252,6 +244,33 @@ gen n_s_wade = s_wade
 foreach st of local s_wade_streets {
 	replace n_s_wade = 1 if `st'
 }
+
+*/
+//Butterbiggins
+gen grenoch = regexm(res_street_address, "GRENOCH")
+gen bally_shannon = regexm(res_street_address, "BALLY SHANNON")
+gen havelock_ct = regexm(res_street_address, "HAVELOCK CT")
+gen ness = regexm(res_street_address, "NESS DR") & apex
+
+gen n_butterbiggins = butterbiggins
+foreach st of local butterbiggins_streets	{
+	replace n_butterbiggins = 1 if `st'
+}
+
+//Eastern Branch
+gen stoney_spring = regexm(res_street_address, "STONEY SPRING DF")
+gen sunbright = regexm(res_street_address, "SUNBRIGHT LN")
+gen diamond_springs = regexm(res_street_address, "DIAMOND SPRINGS DR")
+gen muddy_creek = regexm(res_street_address, "MUDDY CREEK CT")
+
+local eastern_branch_streets "stoney_spring sunbright diamond_springs muddy_creek"
+
+gen n_eastern_branch = eastern_branch
+
+foreach st of local eastern_branch_streets	{
+	replace n_eastern_branch =1 if `st'
+}
+
 save "${clean_data}wake_voter_data_househunt_analysis.dta", replace
 save "${archive}wake_voter_data_househunt_analysis_`date_time'.dta", replace
 
